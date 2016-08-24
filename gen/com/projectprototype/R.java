@@ -18,6 +18,7 @@ public final class R {
         public static final int green=0x7f050002;
         public static final int grey=0x7f050001;
         public static final int transparent=0x7f050000;
+        public static final int white=0x7f050004;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -38,25 +39,44 @@ public final class R {
     }
     public static final class drawable {
         public static final int drawer_shadow=0x7f020000;
-        public static final int ic_drawer=0x7f020001;
+        public static final int header_background=0x7f020001;
+        public static final int ic_drawer=0x7f020002;
+        public static final int icon=0x7f020003;
+        public static final int item_background=0x7f020004;
+        public static final int item_background_focused=0x7f020005;
+        public static final int list_item_background=0x7f020006;
     }
     public static final class id {
         public static final int TextView01=0x7f0b0005;
-        public static final int action_settings=0x7f0b000a;
-        public static final int calendar=0x7f0b0008;
+        public static final int action_settings=0x7f0b0017;
+        public static final int calendar=0x7f0b0014;
+        public static final int date=0x7f0b0015;
+        public static final int date_icon=0x7f0b0016;
+        public static final int gridview=0x7f0b0012;
+        public static final int header=0x7f0b0008;
         public static final int leaveCancel=0x7f0b0004;
         public static final int leaveDate=0x7f0b0000;
         public static final int leaveName=0x7f0b0001;
         public static final int leaveSubmit=0x7f0b0002;
         public static final int leaveType=0x7f0b0003;
-        public static final int leavebutton=0x7f0b0009;
+        public static final int leavebutton=0x7f0b0013;
+        public static final int linearLayout2=0x7f0b000c;
+        public static final int next=0x7f0b000b;
+        public static final int previous=0x7f0b0009;
         public static final int textView1=0x7f0b0007;
         public static final int textView2=0x7f0b0006;
+        public static final int textView3=0x7f0b000d;
+        public static final int textView4=0x7f0b000e;
+        public static final int textView5=0x7f0b000f;
+        public static final int textView6=0x7f0b0010;
+        public static final int textView7=0x7f0b0011;
+        public static final int title=0x7f0b000a;
     }
     public static final class layout {
         public static final int activity_leave=0x7f040000;
         public static final int activity_main=0x7f040001;
         public static final int activity_view_leave=0x7f040002;
+        public static final int calendar_item=0x7f040003;
     }
     public static final class menu {
         public static final int global=0x7f0a0000;

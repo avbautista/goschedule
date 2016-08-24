@@ -28,27 +28,12 @@ public class ViewLeaveActivity extends ListActivity implements OnItemClickListen
 		setContentView(R.layout.activity_view_leave);
 		
 		Intent intentDateReceived = getIntent();
-		Integer year = intentDateReceived.getExtras().getInt("year");
-		Integer month = intentDateReceived.getExtras().getInt("month");
-		Integer day = intentDateReceived.getExtras().getInt("day");
+		String year = intentDateReceived.getExtras().getString("year");
+		String month = intentDateReceived.getExtras().getString("month");
+		String day = intentDateReceived.getExtras().getString("day");
 		
-		if (month < 10){
-			monthString = Integer.toString(month);
-			monthString = "0"+monthString;	
-		}
-		else{
-			monthString = Integer.toString(month);
-		}
-		
-		if (day < 10){
-			dayString = Integer.toString(day);
-			dayString = "0"+dayString;	
-		}
-		else{
-			dayString = Integer.toString(day);
-		}
-		
-		dateString = monthString + "/" + dayString + "/" + Integer.toString(year);
+
+		dateString = month + "/" + day + "/" + year;
 		
 		listLeave = db.getAllInDate(dateString);
 		
