@@ -77,6 +77,7 @@ public class CalendarAdapter extends BaseAdapter {
         	// mark current day as focused
         	if(month.get(Calendar.YEAR)== selectedDate.get(Calendar.YEAR) && month.get(Calendar.MONTH)== selectedDate.get(Calendar.MONTH) && days[position].equals(""+selectedDate.get(Calendar.DAY_OF_MONTH))) {
         		v.setBackgroundResource(R.drawable.item_background_focused);
+        		
         	}
         	else {
         		v.setBackgroundResource(R.drawable.list_item_background);
