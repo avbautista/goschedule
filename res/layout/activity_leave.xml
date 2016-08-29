@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/header3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0097a7"
+        android:orientation="horizontal" >
+        
+        <TextView
+            android:id="@+id/title3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:paddingLeft="5dp"
+            android:text="File Leave"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        
+    </RelativeLayout>
+        
+   
+<LinearLayout
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -129,17 +159,28 @@
             android:id="@+id/leaveSubmit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.375"
+            android:layout_weight="0.370"
+            android:background="#0097a7"
             android:onClick="submitLeave"
-			android:text="Submit" /> 
+            android:text="Submit"
+            android:textColor="@color/white" />
+        
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.01" />
 
         <Button
             android:id="@+id/leaveCancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.375"
+            android:layout_weight="0.370"
+            android:background="#0097a7"
             android:onClick="cancelView"
-			android:text="Cancel" />
+            android:text="Cancel"
+            android:textColor="@color/white" />
+
     </LinearLayout>
 
+</LinearLayout>
 </LinearLayout>

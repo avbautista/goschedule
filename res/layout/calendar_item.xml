@@ -7,15 +7,15 @@
     
     android:background="@drawable/list_item_background"    
     >
+
 	<TextView
-			android:id="@+id/date"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    
-		    android:textSize="14sp"
-		    android:textStyle="bold"
-		    android:textColor="@color/white"
-		    >
+	    android:id="@+id/date"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:textColor="#0097a7"
+	    android:textSize="16sp"
+	    android:textStyle="bold" >
+
 	</TextView>
 	<ImageView
 		android:id="@+id/date_icon"

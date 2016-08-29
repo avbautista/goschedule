@@ -5,7 +5,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_leave">LeaveActivity</string>
-    <string name="leavebutton">Add Leave</string>
+    <string name="leavebutton">File Leave</string>
     <string name="logstring">Log Leave</string>
     <string name="leave_prompt">Choose a Leave Type</string>
 
