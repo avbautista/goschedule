@@ -2,7 +2,11 @@ package com.projectprototype;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Random;
+
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 //import com.examples.android.calendar.CalendarAdapter;
 //import com.examples.android.calendar.R;
@@ -15,16 +19,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.GridView;
 import android.widget.TextView;
-import android.widget.CalendarView.OnDateChangeListener;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class MainActivity extends Activity {
 	DatabaseHelper db = new DatabaseHelper(this);
@@ -33,6 +34,28 @@ public class MainActivity extends Activity {
 	public CalendarAdapter adapter;
 	public Handler handler;
 	public ArrayList<String> items;
+	
+	//Resource class for Firebase use
+	public static class Resource {
+		  String date;
+		  String name;
+		  String type;
+		  	  
+		  public Resource() {
+		    // empty default constructor, necessary for Firebase to be able to deserialize blog posts
+		  }
+		  
+		  public String getDate() {
+			    return date;
+		  }
+		  public String getName() {
+		    return name;
+		  }
+		  public String getType() {
+		    return type;
+		  }
+		  
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +63,8 @@ public class MainActivity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 		
+		//Initialize Calendar View with Gridview
 		month = Calendar.getInstance();
-		//onNewIntent(getIntent());
 		setDateToday();
 		
 		items = new ArrayList<String>();
@@ -49,9 +72,30 @@ public class MainActivity extends Activity {
 		   
 		GridView gridview = (GridView) findViewById(R.id.gridview);
 		gridview.setAdapter(adapter);
-		   
-		handler = new Handler();
-		handler.post(calendarUpdater);
+		
+		//Get Firebase Data
+		Firebase.setAndroidContext(this);
+		Firebase ref = new Firebase("https://goschedule-50998.firebaseio.com/dates");
+		
+		ref.addValueEventListener(new ValueEventListener() {
+		    @Override
+		    public void onDataChange(DataSnapshot snapshot) {
+		        //System.out.println("There are " + snapshot.getChildrenCount() + " blog posts");
+		    	db.deleteAll();
+		        for (DataSnapshot personSnapshot: snapshot.getChildren()) {
+		          Resource person = personSnapshot.getValue(Resource.class);
+		          db.createLog(person.getName(),person.getDate(),person.getType());
+		          handler = new Handler();
+		  		  handler.post(calendarUpdater);
+		          //System.out.println(post.getAuthor() + " - " + post.getTitle());
+		        }
+		    }
+		    @Override
+		    public void onCancelled(FirebaseError firebaseError) {
+		          System.out.println("The read failed: " + firebaseError.getMessage());
+		    }
+		});
+		
 		   
 		TextView title  = (TextView) findViewById(R.id.title);
 		title.setText(android.text.format.DateFormat.format("MMMM yyyy", month));
@@ -107,9 +151,7 @@ public class MainActivity extends Activity {
 				}
 				       
 			}
-		});
-		
-		
+		});		
 		
 		Button logLeaveButton = (Button) findViewById(R.id.leavebutton); 
 		logLeaveButton.setOnClickListener(new View.OnClickListener() {
@@ -120,8 +162,10 @@ public class MainActivity extends Activity {
             }
         });
 		
-		Intent intentHome = getIntent();
-		String message = intentHome.getStringExtra("message");
+		
+		  
+		//Intent intentHome = getIntent();
+		//String message = intentHome.getStringExtra("message");
 		//Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
 	}
 	
@@ -187,7 +231,7 @@ public class MainActivity extends Activity {
 	        Log.i("TestMain",months+years);
 	        
 			// format random values. You can implement a dedicated class to provide real values
-			for(int i=0;i<31;i++) {
+			for(int i=0;i<=31;i++) {
 				
 				toPass = Integer.toString(i);
 				if (toPass.length() == 1){

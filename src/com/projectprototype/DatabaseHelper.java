@@ -44,8 +44,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 	public boolean createLog(String name, String date, String type) {
 		// get reference of the BookDB database
 		
-		String[] dateArr = date.split("/");
+		String[] dateArr = date.split("-");
 		String monthyear = dateArr[0] + dateArr[2];
+		//date = dateArr[0] + "-" + dateArr[1] + "-" + dateArr[2];
 		
 		SQLiteDatabase db = this.getWritableDatabase();
 		
@@ -70,11 +71,19 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 		}		
 	}
 	
+	public void deleteAll() {
+		SQLiteDatabase db = this.getWritableDatabase();
+		db.delete(table_LEAVES,null,null);
+		db.close();
+	}
+	
 	public List<String> getAllInDate(String date) {
 		List<String> output = new ArrayList<String>();
 		Integer id;
 		String name;
 		String type;
+		
+		date = date.replace("/","-");
 		
 		//Log.i("myApp", date);
 		// select book query
@@ -113,7 +122,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 		if (cursor.moveToFirst()) {
 			do {
 				date = cursor.getString(2);
-				String[] dateArr = date.split("/");
+				String[] dateArr = date.split("-");
 
 				if (day.equals(dateArr[1])){
 					return true;
